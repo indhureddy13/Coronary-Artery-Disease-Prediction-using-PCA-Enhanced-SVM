@@ -1,0 +1,129 @@
+# Coronary Artery Disease Prediction using PCA-Enhanced SVM
+
+## Overview
+
+This project presents a Machine Learning approach for predicting Coronary Artery Disease (CAD) using Principal Component Analysis (PCA) and Support Vector Machine (SVM). PCA is used to reduce the dimensionality of clinical data while preserving the most significant information, and SVM is used to classify patients as having CAD or not. The objective is to improve prediction accuracy and computational efficiency for healthcare decision support.
+
+---
+
+## Features
+
+- Data preprocessing and standardization
+- Principal Component Analysis (PCA) for dimensionality reduction
+- Support Vector Machine (SVM) classification
+- Hyperparameter tuning using GridSearchCV
+- Performance evaluation using Accuracy, Precision, Recall, F1-Score, ROC-AUC, and Confusion Matrix
+- Data visualization using Scree Plot, Biplot, PCA Projection, and Cumulative Variance Plot
+
+---
+
+## Technologies Used
+
+### MATLAB
+- Principal Component Analysis (PCA)
+- Covariance Matrix
+- Eigenvalue & Eigenvector Analysis
+- Scree Plot
+- Biplot
+- Cumulative Variance Plot
+- PCA Projection
+
+### Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Support Vector Machine (SVM)
+- GridSearchCV
+
+---
+
+## Dataset
+
+- Heart Disease Dataset
+- 1,025 patient records
+- 13 clinical features
+- Target: Coronary Artery Disease Prediction
+
+---
+
+## Workflow
+
+1. Load and preprocess the dataset
+2. Standardize numerical features
+3. Apply Principal Component Analysis (PCA)
+4. Select principal components
+5. Train Support Vector Machine (SVM)
+6. Optimize model using GridSearchCV
+7. Evaluate model performance
+8. Visualize results
+
+---
+
+## Results
+
+- Reduced dataset dimensionality using PCA
+- Improved computational efficiency
+- Accurate CAD classification using SVM
+- Performance evaluated using multiple classification metrics
+
+---
+
+## Repository Structure
+
+```
+coronary-artery-disease-prediction-pca-svm/
+│
+├── matlab/
+│   ├── pca_analysis.m
+│   └── visualization.m
+│
+├── python/
+│   ├── train.py
+│   ├── predict.py
+│   └── utils.py
+│
+├── outputs/
+│   ├── scree_plot.png
+│   ├── biplot.png
+│   ├── confusion_matrix.png
+│   ├── roc_curve.png
+│   └── cumulative_variance.png
+│
+├── heart.csv
+├── requirements.txt
+├── README.md
+└── LICENSE
+```
+
+---
+
+## Future Improvements
+
+- Integrate Deep Learning models for comparison
+- Develop a web-based prediction interface
+- Validate on larger and more diverse datasets
+- Deploy the model as a clinical decision support system
+
+---
+
+## Research Paper
+
+This project is based on our research paper:
+
+**Coronary Artery Disease Prediction Using PCA-Enhanced SVM Classifier**
+
+---
+
+## Authors
+
+- Indhushree Reddy M
+- Swarnasmita Roy
+- Kaustubh Narayan Kalpathy
+- Akshaya Gayathri
+
+---
+
+## License
+
+This project is licensed under the MIT License.
