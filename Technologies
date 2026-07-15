@@ -1,0 +1,18 @@
+## Technologies Used
+
+### Programming Languages
+- MATLAB
+- Python
+
+### Libraries
+- NumPy
+- Pandas
+- Scikit-learn
+- Matplotlib
+
+### Machine Learning Techniques
+- Principal Component Analysis (PCA)
+- Support Vector Machine (SVM)
+- GridSearchCV
+- Data Standardization
+- Feature Engineering
