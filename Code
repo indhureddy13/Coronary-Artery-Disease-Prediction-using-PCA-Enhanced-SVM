@@ -1,0 +1,113 @@
+%% Coronary Artery Disease Prediction using PCA
+clc;
+clear;
+close all;
+
+%% Load Dataset
+data = readtable('heart.csv');
+
+% Extract feature names
+featureNames = data.Properties.VariableNames;
+
+% Convert table to numeric array
+X = table2array(data);
+
+%% Standardize Data
+X_std = zscore(X);
+
+disp('Standardized Dataset:')
+disp(X_std(1:5,:))
+
+%% Covariance Matrix
+covMatrix = cov(X_std);
+
+disp('Covariance Matrix:')
+disp(covMatrix)
+
+%% Eigenvalues and Eigenvectors
+[eigenVectors,eigenValuesMatrix] = eig(covMatrix);
+
+eigenValues = diag(eigenValuesMatrix);
+
+%% Sort Eigenvalues
+[eigenValuesSorted,index] = sort(eigenValues,'descend');
+
+sortedEigenVectors = eigenVectors(:,index);
+
+%% Variance Explained
+varianceExplained = (eigenValuesSorted/sum(eigenValuesSorted))*100;
+
+disp('Variance Explained:')
+disp(varianceExplained)
+
+%% Scree Plot
+figure;
+bar(varianceExplained)
+xlabel('Principal Component')
+ylabel('Variance Explained (%)')
+title('Scree Plot')
+grid on
+
+%% Cumulative Variance
+cumulativeVariance = cumsum(varianceExplained);
+
+figure;
+plot(cumulativeVariance,'-o','LineWidth',2)
+xlabel('Number of Principal Components')
+ylabel('Cumulative Variance (%)')
+title('Cumulative Variance')
+grid on
+
+%% Number of Components for 75% Variance
+threshold = 75;
+
+numComponents = find(cumulativeVariance>=threshold,1);
+
+fprintf('Number of Components for 75%% Variance = %d\n',numComponents);
+
+%% Select Principal Components
+principalComponents = sortedEigenVectors(:,1:numComponents);
+
+%% Project Data
+projectedData = X_std*principalComponents;
+
+disp('Projected Data:')
+disp(projectedData(1:5,:))
+
+%% Scatter Plot
+figure;
+
+if numComponents >=2
+scatter(projectedData(:,1),projectedData(:,2),35,'filled')
+xlabel('Principal Component 1')
+ylabel('Principal Component 2')
+title('PCA Projection')
+grid on
+end
+
+%% Biplot
+
+if numComponents >=2
+figure
+biplot(principalComponents(:,1:2),...
+'Scores',projectedData(:,1:2),...
+'VarLabels',featureNames)
+title('PCA Biplot')
+end
+
+%% Top Features
+disp('Top Features')
+
+for i=1:2
+
+    [~,sortedIdx]=sort(abs(principalComponents(:,i)),'descend');
+
+    fprintf('\nPrincipal Component %d\n',i);
+
+    for j=1:5
+        fprintf('%s : %.4f\n',...
+            featureNames{sortedIdx(j)},...
+            principalComponents(sortedIdx(j),i));
+    end
+
+end
